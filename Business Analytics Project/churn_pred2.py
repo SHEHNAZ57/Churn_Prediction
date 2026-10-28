@@ -1,19 +1,23 @@
+
+from pathlib import Path
 from sklearn.preprocessing import MinMaxScaler
 import streamlit as st
 import pickle
 import pandas as pd
 import plotly.express as px
 
-# Set Streamlit layout to wide
+APP_DIR = Path(__file__).resolve().parent
+
 st.set_page_config(layout="wide")
 
 # Load the trained model
-with open('best_model.pkl', 'rb') as file:
+with open(APP_DIR / "best_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Load the MinMaxScaler
-with open('scaler.pkl', 'rb') as file:
+with open(APP_DIR / "scaler.pkl", "rb") as file:
     scaler = pickle.load(file)
+
 
 # Define the input features for the model
 feature_names = [
